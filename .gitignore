@@ -2,3 +2,5 @@
 /AspNetCoreWebDemo/AspNetCoreWebDemo/bin
 /AspNetCoreWebDemo/AspNetCoreWebDemo/wwwroot/lib/jquery/dist/*.map
 /AspNetCoreWebDemo/AspNetCoreWebDemo/wwwroot/lib/bootstrap/dist/css/*.map
+/AspNetCoreWebDemo/AspNetCoreData/obj
+/AspNetCoreWebDemo/AspNetCoreData/bin
