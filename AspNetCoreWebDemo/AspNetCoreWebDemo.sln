@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreWebDemo", "AspNetCoreWebDemo\AspNetCoreWebDemo.csproj", "{2664D717-153D-44E0-9648-4E10BC97C8BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreData", "AspNetCoreData\AspNetCoreData.csproj", "{3B57E9D7-6A9B-4951-90AD-A94693E6AC7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreData", "AspNetCoreData\AspNetCoreData.csproj", "{3B57E9D7-6A9B-4951-90AD-A94693E6AC7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -25,7 +25,7 @@ namespace AspNetCoreWebDemo
         {
             services.AddMvc();
             
-            services.AddDbContext<BloggingContext>(options =>
+            services.AddDbContext<AspCoreDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("BloggingDatabase")));
         }
 
