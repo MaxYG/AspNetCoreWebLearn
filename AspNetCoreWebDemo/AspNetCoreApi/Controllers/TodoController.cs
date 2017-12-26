@@ -26,7 +26,7 @@ namespace AspNetCoreApi.Controllers
         public IEnumerable<TodoItem> GetAll()
         {
             var result = _dbContext.TodoItems.ToList();
-
+            
             return result;
         }
 
@@ -41,6 +41,53 @@ namespace AspNetCoreApi.Controllers
             return new ObjectResult(result);
         }
 
+        [HttpPost]
+        public IActionResult Create([FromBody] TodoItem item)
+        {
+            if (item == null)
+            {
+                return BadRequest();
+            }
+            
+            _dbContext.TodoItems.Add(item);
+            _dbContext.SaveChanges();
 
+            return CreatedAtRoute("GetTodo", new { id = item.Id }, item);
+        }
+        [HttpPut("{id}")]
+        public IActionResult Update(long id, [FromBody] TodoItem item)
+        {
+            if (item == null || item.Id != id)
+            {
+                return BadRequest();
+            }
+
+            var todo = _dbContext.TodoItems.FirstOrDefault(t => t.Id == id);
+            if (todo == null)
+            {
+                return NotFound();
+            }
+
+            todo.IsComplete = item.IsComplete;
+            todo.Name = item.Name;
+
+            _dbContext.TodoItems.Update(todo);
+            _dbContext.SaveChanges();
+            return new NoContentResult();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(long id)
+        {
+            var todo = _dbContext.TodoItems.FirstOrDefault(t => t.Id == id);
+            if (todo == null)
+            {
+                return NotFound();
+            }
+
+            _dbContext.TodoItems.Remove(todo);
+            _dbContext.SaveChanges();
+            return new NoContentResult();
+        }
     }
 }
