@@ -4,3 +4,7 @@
 /AspNetCoreWebDemo/AspNetCoreWebDemo/wwwroot/lib/bootstrap/dist/css/*.map
 /AspNetCoreWebDemo/AspNetCoreData/obj
 /AspNetCoreWebDemo/AspNetCoreData/bin
+/AspNetCoreWebDemo/AspNetCoreApi/obj
+/AspNetCoreWebDemo/AspNetCoreApi/bin
+/AspNetCoreWebDemo/AspNetCoreApiData/bin
+/AspNetCoreWebDemo/AspNetCoreApiData/obj
