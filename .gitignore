@@ -8,3 +8,6 @@
 /AspNetCoreWebDemo/AspNetCoreApi/bin
 /AspNetCoreWebDemo/AspNetCoreApiData/bin
 /AspNetCoreWebDemo/AspNetCoreApiData/obj
+/AspNetCoreWebDemo/.vs/AspNetCoreWebDemo/v15/sqlite3/*.lock
+/AspNetCoreWebDemo/.vs/AspNetCoreWebDemo/v15/Server/sqlite3/*.ide
+/AspNetCoreWebDemo/.vs/AspNetCoreWebDemo/v15/Server/sqlite3/*.lock

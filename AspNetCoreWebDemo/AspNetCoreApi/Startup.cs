@@ -28,6 +28,7 @@ namespace AspNetCoreApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            //update-database
             var connectionString = "Data Source=.;Initial Catalog=TodoDatabase;Integrated Security=true;MultipleActiveResultSets=True;";
             services.AddDbContext<ApiDbcontext>(option => option.UseSqlServer(connectionString));
         }
