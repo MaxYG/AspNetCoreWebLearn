@@ -20,6 +20,18 @@ namespace AspNetCoreApiData.Migrations
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("AspNetCoreApiData.ConfigurationValue", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Value");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ConfigurationValues");
+                });
+
             modelBuilder.Entity("AspNetCoreApiData.TodoItem", b =>
                 {
                     b.Property<int>("Id")

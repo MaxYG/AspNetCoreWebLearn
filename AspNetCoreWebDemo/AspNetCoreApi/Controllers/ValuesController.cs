@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCoreApi.ConfigureInMemory;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreApi.Controllers
@@ -15,6 +16,7 @@ namespace AspNetCoreApi.Controllers
         {
             return new string[] { "value1", "value2" };
         }
+        
 
         // GET api/values/5
         [HttpGet("{id}")]

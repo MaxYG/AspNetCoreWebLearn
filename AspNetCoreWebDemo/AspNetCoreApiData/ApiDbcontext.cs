@@ -7,12 +7,12 @@ namespace AspNetCoreApiData
 {
     public class ApiDbcontext: DbContext
     {
-        public ApiDbcontext(DbContextOptions<ApiDbcontext> options)
-            : base(options)
+        public ApiDbcontext(DbContextOptions<ApiDbcontext> options): base(options)
         {
             //Database.EnsureCreated();
         }
 
         public DbSet<TodoItem> TodoItems { get; set; }
+        public DbSet<ConfigurationValue> ConfigurationValues { get; set; }
     }
 }

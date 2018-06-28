@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<wizards>
+  <wizard name="Gandalf">
+    <age>1000</age>
+  </wizard>
+  <wizard name="Harry">
+    <age>17</age>
+  </wizard>
+</wizards>
