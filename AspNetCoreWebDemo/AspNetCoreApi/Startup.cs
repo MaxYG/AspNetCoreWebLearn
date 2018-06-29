@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AspNetCoreApi.ConfigureInMemory;
+using AspNetCoreApi.Options;
 using AspNetCoreApiData;
 using AspNetCoreData;
 using Microsoft.AspNetCore.Builder;
@@ -64,6 +65,17 @@ namespace AspNetCoreApi
             
             services.AddDbContext<ApiDbcontext>(option => option.UseSqlServer(Configuration.GetConnectionString(
                 "DefaultConnection")));
+
+            //1 
+            services.Configure<MyOptions>(Configuration);
+            //2
+            services.Configure<MyOptionsWithDelegateConfig>(myoption =>
+            {
+                myoption.Option1 = "delegate option";
+                myoption.Option2 = 500;
+            });
+            //3
+            services.Configure<MySnapshotOptions>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
