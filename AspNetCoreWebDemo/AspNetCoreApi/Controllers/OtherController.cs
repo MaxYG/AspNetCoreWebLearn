@@ -10,7 +10,7 @@ namespace AspNetCoreApi.Controllers
     public class OtherController : Controller
     {
         private readonly IConfiguration _config;
-        private readonly ILogger _logger;
+        private readonly ILogger<OtherController> _logger;
         public string[] LoadedHostingStartupAssemblies { get; private set; }
 
         public OtherController(IConfiguration config,ILogger<OtherController> logger)
@@ -30,7 +30,7 @@ namespace AspNetCoreApi.Controllers
         [HttpGet]
         public string[] GetAll()
         {
-            _logger.LogDebug("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            _logger.LogInformation("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
             return LoadedHostingStartupAssemblies;
         }
     }
