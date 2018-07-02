@@ -55,8 +55,10 @@ namespace AspNetCoreApi
                 )
                 .Build();
             var key1 = Configuration["key1"];
+
+            
         }
-        
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -76,6 +78,7 @@ namespace AspNetCoreApi
             });
             //3
             services.Configure<MySnapshotOptions>(Configuration);
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -95,7 +98,6 @@ namespace AspNetCoreApi
             app.UseMvcWithDefaultRoute();
             app.UseMvc();
 
-            
 
         }
     }

@@ -20,6 +20,12 @@ namespace AspNetCoreApi
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .UseSetting(WebHostDefaults.PreventHostingStartupKey,"true")
+            .ConfigureLogging((hostingContext,logging) =>
+                {
+                    logging.AddConsole();
+                    logging.AddDebug();
+                })
                 .Build();
     }
 }
