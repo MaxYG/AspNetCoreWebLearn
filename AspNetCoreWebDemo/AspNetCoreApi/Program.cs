@@ -21,7 +21,7 @@ namespace AspNetCoreApi
                 logger.Debug("init main");
                 BuildWebHost(args).Run();
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 //NLog: catch setup errors
                 logger.Error(ex, "Stopped program because of exception");

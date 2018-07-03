@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using AspNetCoreApi.ConfigureInMemory;
+using AspNetCoreApi.Filter;
 using AspNetCoreApi.Options;
 using AspNetCoreApiData;
 using AspNetCoreData;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -78,7 +82,16 @@ namespace AspNetCoreApi
             });
             //3
             services.Configure<MySnapshotOptions>(Configuration);
-           
+
+
+            //handle exception
+            services.AddApplicationInsightsTelemetry(Configuration);
+            services.AddMvc(
+                config => {
+                    config.Filters.Add(typeof(CustomExceptionFilter));
+                }
+            );
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -88,15 +101,45 @@ namespace AspNetCoreApi
             if (environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+//                app.UseExceptionHandler();
+//                app.UseExceptionHandler("/Error");
+//                app.UseDeveloperExceptionPage();
+                                /*app.UseExceptionHandler(options => {
+                                    options.Run(
+                                        async context =>
+                                        {
+                                            context.Response.StatusCode = (int)HttpStatusCode.NotFound;
+                                            context.Response.ContentType = "text/html";
+                                            var ex = context.Features.Get<IExceptionHandlerFeature>();
+                                            if (ex != null)
+                                            {
+                                                var err = $"<h1>Error: {ex.Error.Message}</h1>{ex.Error.StackTrace }";
+                                                await context.Response.WriteAsync(err).ConfigureAwait(false);
+                                            }
+                                        });
+                                });*/
+
+                /*app.UseStatusCodePages(async context =>
+                {
+                    context.HttpContext.Response.ContentType = "text/plain";
+
+                    await context.HttpContext.Response.WriteAsync(
+                        "Status code page, status code: " +
+                        context.HttpContext.Response.StatusCode);
+                });*/
+
                 app.UseBrowserLink();
             }
             if (environment.IsProduction() || environment.IsStaging())
             {
                 app.UseExceptionHandler("/Error");
             }
+         
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
             app.UseMvc();
+            
+
 
 
         }

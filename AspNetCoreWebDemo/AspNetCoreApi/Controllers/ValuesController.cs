@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AspNetCoreApi.ConfigureInMemory;
+using AspNetCoreApi.Exception;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreApi.Controllers
@@ -14,6 +15,7 @@ namespace AspNetCoreApi.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
+            throw new MyAppException("xxxxxxxx");
             return new string[] { "value1", "value2" };
         }
         
