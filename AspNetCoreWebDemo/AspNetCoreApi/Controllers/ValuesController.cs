@@ -15,7 +15,7 @@ namespace AspNetCoreApi.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            throw new MyAppException("xxxxxxxx");
+            throw new MyAppException("my customer exception");
             return new string[] { "value1", "value2" };
         }
         

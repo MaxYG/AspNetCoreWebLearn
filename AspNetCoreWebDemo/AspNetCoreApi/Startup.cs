@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
@@ -23,10 +24,12 @@ namespace AspNetCoreApi
 {
     public class Startup
     {
+        private IHostingEnvironment _hostingEnvironment;
         public IConfiguration Configuration { get; set; }
 
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment environment)
         {
+           
             var myWindow = new MyWindow();
             var dictionaryInMemoryDemo = myWindow.GetDictionary();
             var builder = new ConfigurationBuilder()
@@ -34,6 +37,7 @@ namespace AspNetCoreApi
                 .AddJsonFile("appsettings.json")
                 .AddXmlFile("XmlConfiguration.xml")
                 .AddInMemoryCollection(dictionaryInMemoryDemo);
+               
                 
 
             Configuration = builder.Build();
@@ -60,7 +64,7 @@ namespace AspNetCoreApi
                 .Build();
             var key1 = Configuration["key1"];
 
-            
+            _hostingEnvironment = environment;
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -92,11 +96,16 @@ namespace AspNetCoreApi
                 }
             );
 
+            var physicalProvide = _hostingEnvironment.ContentRootFileProvider;
+            services.AddSingleton<IFileProvider>(physicalProvide);
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment environment)
         {
+        
             var myConfig = Configuration["MyConfig"];
             if (environment.IsDevelopment())
             {
